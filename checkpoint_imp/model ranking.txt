@@ -1,0 +1,61 @@
+Perseverance (id: xuUwDzqEsr)
+
+ResNet34:
+1.4
+2.2
+3.13
+
+1.3		0.82759	0.87805	0.85282
+2.13(1)	0.81739	0.87805	0.84772
+3.13(2)	0.80702	0.87805	0.84253
+4.1		0.80000	0.87179	0.83590
+5.26		0.80000	0.86364	0.83182
+
+2nd modified model:
+nn.Conv2d(in_channels=3, out_channels=64, kernel_size=7, stride=2, padding=3),
+nn.BatchNorm2d(num_features=64),
+nn.ReLU(),
+nn.MaxPool2d(kernel_size=3, stride=2),
+ResBlock(in_channels=64, out_channels=64),
+ResBlock(in_channels=64, out_channels=128, stride_shape=2),
+nn.Dropout(p=0.2),
+ResBlock(in_channels=128, out_channels=256, stride_shape=2),
+nn.Dropout(p=0.5),
+ResBlock(in_channels=256, out_channels=512, stride_shape=2),
+nn.AvgPool2d(kernel_size=10),
+Flatten(),
+nn.Dropout(p=0.5),
+nn.Linear(in_features=512, out_features=2),
+nn.Sigmoid()
+1.28		0.70175	0.89474	0.79825
+
+1st modified model:
+nn.Conv2d(in_channels=3, out_channels=64, kernel_size=7, stride=2, padding=3),
+nn.BatchNorm2d(num_features=64),
+nn.ReLU(),
+nn.MaxPool2d(kernel_size=3, stride=2),
+ResBlock(in_channels=64, out_channels=64),
+ResBlock(in_channels=64, out_channels=128, stride_shape=2),
+ResBlock(in_channels=128, out_channels=256, stride_shape=2),
+nn.Dropout(p=0.5),
+ResBlock(in_channels=256, out_channels=512, stride_shape=2),
+nn.AvgPool2d(kernel_size=10),
+Flatten(),
+nn.Dropout(p=0.5),
+nn.Linear(in_features=512, out_features=2),
+nn.Sigmoid()
+2.58		0.70000	0.89474	0.79737
+3.72		0.70677	0.85714	0.78195
+5.41		0.66667	0.88372	0.77519
+6.35		0.67769	0.86486	0.77128
+
+4.60		0.66667	0.89474	0.78070
+p=0.1, p=0.4, p=0.5 lr=1e-4
+
+Original model:
+7.7		0.61404	0.91892	0.76648	
+8.2(1)	0.65000	0.87179	0.76090
+9.2(0)	0.61194	0.87179	0.74187
+10.1		0.61017	0.85714	0.73366
+11.11		0.64122	0.82051	0.73087
+12.25		0.61429	0.84211	0.72820
